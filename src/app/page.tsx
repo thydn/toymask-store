@@ -5,7 +5,7 @@ import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 
-export const revalidate = 0; // Luôn lấy dữ liệu mới nhất
+export const revalidate = 0;
 
 async function getLatestProducts() {
   const query = `*[_type == "product"] | order(_createdAt desc) [0...4] {
@@ -33,29 +33,19 @@ export default async function Home() {
         <section className="px-6 py-12 md:py-24 max-w-7xl mx-auto">
           <div className="relative grid grid-cols-1 md:grid-cols-12 gap-0 border-2 border-on-background rounded-xl overflow-hidden bg-surface-container-low">
             <div className="md:col-span-7 p-8 md:p-16 flex flex-col justify-center items-start z-10">
-              <span className="bg-secondary-container text-on-secondary-container px-4 py-1 border-2 border-on-background font-bold text-sm mb-6 rounded-full uppercase tracking-widest">
-                High-End Curations
-              </span>
+              <span className="bg-secondary-container text-on-secondary-container px-4 py-1 border-2 border-on-background font-bold text-sm mb-6 rounded-full uppercase tracking-widest">High-End Curations</span>
               <h1 className="font-display font-extrabold text-5xl md:text-7xl lg:text-8xl text-on-surface leading-[0.9] tracking-tighter mb-8">
-                UNLOCK THE <br /> 
-                <span className="text-primary-container stroke-text">VAULT OF JOY</span>
+                UNLOCK THE <br/> <span className="text-primary-container stroke-text">VAULT OF JOY</span>
               </h1>
               <p className="text-xl md:text-2xl text-on-surface/80 max-w-lg mb-10 leading-relaxed">
                 Where architectural precision meets childhood wonder. Discover our limited-edition artisanal toy gallery.
               </p>
-              <Link
-                href="/products"
-                className="bg-primary-container text-on-background border-2 border-on-background px-8 py-4 rounded-full font-display font-black text-xl uppercase hard-shadow-hover transition-all inline-block"
-              >
+              <Link href="/products" className="bg-primary-container text-on-background border-2 border-on-background px-8 py-4 rounded-full font-display font-black text-xl uppercase hard-shadow-hover transition-all inline-block">
                 Explore Collections
               </Link>
             </div>
             <div className="md:col-span-5 h-[400px] md:h-auto relative bg-surface-container-highest border-l-0 md:border-l-2 border-on-background overflow-hidden">
-              <img
-                className="w-full h-full object-cover"
-                alt="Modern high-end designer toy"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsBBb3uI2e8qGguEmml0jmVvEgZS5xHn8dE2qqoIW7i1Q8AC4HHtCRcW-G7iNGTOU4lb3adH-II6qS-q_w5LPENj732ZQuOH45Rb4FhjyWYoee76sbPNI5g3IYY_S09_c78jN7qyT7V54_BybRzQXHLeZUO2-QtvGsGUuRjX9rGiEEhAcSWgTobWZUNxNZvHtxCNMhLhgMMmWDgtx6pXIscNIT8s7hvuyaSw8zTPyxfQEIsAJBLqFkQ_Ld8fQetx7avnKVruI1bko"
-              />
+              <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsBBb3uI2e8qGguEmml0jmVvEgZS5xHn8dE2qqoIW7i1Q8AC4HHtCRcW-G7iNGTOU4lb3adH-II6qS-q_w5LPENj732ZQuOH45Rb4FhjyWYoee76sbPNI5g3IYY_S09_c78jN7qyT7V54_BybRzQXHLeZUO2-QtvGsGUuRjX9rGiEEhAcSWgTobWZUNxNZvHtxCNMhLhgMMmWDgtx6pXIscNIT8s7hvuyaSw8zTPyxfQEIsAJBLqFkQ_Ld8fQetx7avnKVruI1bko" alt="Hero" />
             </div>
           </div>
         </section>
@@ -68,59 +58,58 @@ export default async function Home() {
                 <h2 className="font-display font-black text-4xl uppercase tracking-tighter">The Curated Sets</h2>
                 <p className="text-on-surface/60 font-medium">Bespoke categories for the serious collector.</p>
               </div>
-              <Link href="/products" className="text-on-surface font-display font-bold border-b-2 border-on-background pb-1 hover:text-primary transition-colors">
-                View All Series
-              </Link>
+              <button className="text-on-surface font-display font-bold border-b-2 border-on-background pb-1 hover:text-primary transition-colors">View All Series</button>
             </div>
+            
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {/* Collection Card 1 */}
-              <div className="group relative overflow-hidden rounded-xl border-2 border-on-background bg-surface-container-high hard-shadow-hover transition-all aspect-[4/5] md:aspect-auto md:h-[400px]">
-                <div className="p-8 relative z-10">
-                  <h3 className="text-3xl font-display font-black uppercase mb-1">Classic Wood</h3>
-                  <p className="text-sm font-bold opacity-60">Handcrafted Heritage</p>
+              <div className="group relative overflow-hidden rounded-xl border-2 border-on-background bg-surface-container-high hard-shadow-hover transition-all">
+                <div className="aspect-[4/5] overflow-hidden">
+                  <img className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFWimXFQCqjGGka8lV_i5pumOpaHPGmzb2aBkMRnizYHJx1isqSZLeSS-SsRwPY-jKFIxII7_cXKK6xnLCpj2lSp5Y1dWb3a4s83CYDqnmuh8qDDdOsqLDhiNcrP0TJ3g6r7SK94xdLQvHz0oN3bxWFnlOT0BmD1khUjSODEOJgPS09tYSeOKsAzd4fLHE4soLHgxtpR5Lte0ZS8VTqHWilw6A9-I5AyXQOSQJbUqFegDdaxo-F9RtLSlCdbAfKRzHbjHeQ7mw5EU" alt="Classic Wood" />
                 </div>
-                <img 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMgxmrDz-OIPi6Xh270UvQE29-YA7rX-99cNBcZbcJVgf-cCQg1J8fa1WjE4JWcKMN0OnUgm0gz96pCk0estTJZFkRxJyD4wQ5Vhgj7du27lTVtctC5qX6Qx0yaWBdgntJM4oZwYdmF1rjQ8yjJt7S2NMC3Th0nH2DpThMoL2wijLdie6bBH1kuWdj3Cz1nfEKryoz05BJ5-QyIzuWm6CN4MJp10EqyUSJGkOP6dJc60Qr3u-q0lWwNq-Z1pkZGlmhTefeXuO9XVQ"
-                  alt="Wood Collection"
-                  className="absolute bottom-0 right-0 w-3/4 object-contain translate-y-12 translate-x-12 group-hover:translate-y-4 group-hover:translate-x-4 transition-transform duration-500"
-                />
+                <div className="p-6 border-t-2 border-on-background bg-surface">
+                  <h3 className="font-display font-bold text-2xl uppercase">Classic Wood</h3>
+                  <p className="text-sm text-on-surface/60 mb-4 italic">Sustainable Nordic Heritage</p>
+                  <span className="material-symbols-outlined text-3xl">arrow_right_alt</span>
+                </div>
+                <Link className="absolute inset-0 z-20" href="/products"></Link>
               </div>
-              
+
               {/* Collection Card 2 */}
-              <div className="group relative overflow-hidden rounded-xl border-2 border-on-background bg-secondary-container hard-shadow-hover transition-all aspect-[4/5] md:aspect-auto md:h-[400px]">
-                <div className="p-8 relative z-10">
-                  <h3 className="text-3xl font-display font-black uppercase mb-1">Space Tech</h3>
-                  <p className="text-sm font-bold opacity-60">Future-Proofed Vinyl</p>
+              <div className="group relative overflow-hidden rounded-xl border-2 border-on-background bg-secondary-container hard-shadow-hover transition-all">
+                <div className="aspect-[4/5] overflow-hidden">
+                  <img className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM1t6F1J-mObpA01nnqtmR8mgLly3Q3z0D8B0mZszduY6UUIhccjgVTrztPIlygwGeOr0dKwnbKf1xE2052PzJAxxkZw1XTDUNbRnhBC3qKEvV8bkQ31BmRGiWzKwokmYsTgqmkm1ctzKdlPt-IBNu4-7m0oePv4Yjvqs18bVQmg-CmIUyUtpSodsESDcn8XqUrmJJ1wvYrGuWjJuB03aq3a9aj3cXgo2phmFKGB_2EMNlOCC-bq0P3IbdFXF4oYchfh9pRybsSUw" alt="Space Tech" />
                 </div>
-                <img 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJAuseo6PNBy6AN7SpAVTsn6udpmE7mfGNSTfnF-_soCGeZaXluzVwodHMFwEnB8OUgBaanubkPsY2Z2ml_L2c69NWE_B_cD-NMA6e2AboNXOo8oFOmsJ1Qa29AfT1qWxA1s3NLFGlehgjv7lQrtFOP1hsxj8Am8NhkpMsjRIshsHwdzq3I4d2-PdDQjcN6WRibfVaOy_q-9P56TQKW6rBVO23U3tU_9UQTAB7Pa0PGqzh2rTjPc32vlnxr1ryZN9PyOUVoxFxkPY"
-                  alt="Space Collection"
-                  className="absolute bottom-0 right-0 w-3/4 object-contain translate-y-12 translate-x-12 group-hover:translate-y-4 group-hover:translate-x-4 transition-transform duration-500"
-                />
+                <div className="p-6 border-t-2 border-on-background bg-surface">
+                  <h3 className="font-display font-bold text-2xl uppercase">Space Tech</h3>
+                  <p className="text-sm text-on-surface/60 mb-4 italic">Interstellar Precision Models</p>
+                  <span className="material-symbols-outlined text-3xl">arrow_right_alt</span>
+                </div>
+                <Link className="absolute inset-0 z-20" href="/products"></Link>
               </div>
 
               {/* Collection Card 3 */}
-              <div className="group relative overflow-hidden rounded-xl border-2 border-on-background bg-primary-container hard-shadow-hover transition-all aspect-[4/5] md:aspect-auto md:h-[400px]">
-                <div className="p-8 relative z-10">
-                  <h3 className="text-3xl font-display font-black uppercase mb-1">Deep Sea</h3>
-                  <p className="text-sm font-bold opacity-60">Bio-Luminescent Art</p>
+              <div className="group relative overflow-hidden rounded-xl border-2 border-on-background bg-primary-container hard-shadow-hover transition-all">
+                <div className="aspect-[4/5] overflow-hidden">
+                  <img className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHD31LiJtouYXxnKcRpc5DyFnSNVE6gaLTtMwb_lSQJsalarUoDKSG1xtY-wWxZv5GW50cOfBmWnfvxAgLdHFcdKVSIhws0OhWSnbQGFl93WVQ16amOiz8Kf4BSvlnVUZ-KkemLIF1eSUflxEM8C8YjgHz4qR_AyoPNGKaJ2ryreRCIZnO7KDYt25qiaBgc6mhVQ4oAmpMu_WEA7731lW6BG99kJjNw2vql6212FfOPrEz6bv-q-s4bWdlT1wSvpFIzfsxRjsOoGU" alt="Deep Sea Wonders" />
                 </div>
-                <img 
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5LMKgC0OcKXPlCNqE7kqK927DzECEUoTVL7W2uwBs5dh_LuHn-KJS41spre9Bc8wFdLwmAiNODkuQ6P0xcMmoy04pW854ZWYHLxpxYipBPqmJX6GpXZAyAlnZcWyDa_tVPeXe0_nt09n922Fq46aPkm52mzdZESPN105FmcT4oa5t1eCb9Um4GxdyZjPGly7uNXiCm0TiaxALVV2lIDvkNRSvoBNKHJtV4ry7ZGBRdWoxmCQkibubX7Qa1wIKwda4ma3rBtMWLYk"
-                  alt="Sea Collection"
-                  className="absolute bottom-0 right-0 w-3/4 object-contain translate-y-12 translate-x-12 group-hover:translate-y-4 group-hover:translate-x-4 transition-transform duration-500"
-                />
+                <div className="p-6 border-t-2 border-on-background bg-surface">
+                  <h3 className="font-display font-bold text-2xl uppercase">Deep Sea Wonders</h3>
+                  <p className="text-sm text-on-surface/60 mb-4 italic">Abyssal Mechanical Life</p>
+                  <span className="material-symbols-outlined text-3xl">arrow_right_alt</span>
+                </div>
+                <Link className="absolute inset-0 z-20" href="/products"></Link>
               </div>
             </div>
           </div>
         </section>
 
         {/* Latest Drops Grid */}
-        <section className="px-6 py-16 bg-surface">
+        <section className="px-6 py-16 bg-surface-container-low border-y-2 border-on-background">
           <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-end mb-12">
-              <h2 className="font-display font-black text-4xl uppercase tracking-tighter">Hot in the Vault</h2>
-              <Link href="/products" className="text-on-surface font-display font-bold border-b-2 border-on-background pb-1 hover:text-primary transition-colors">View All Artifacts</Link>
+            <div className="flex items-center gap-4 mb-12">
+              <div className="h-2 w-12 bg-primary-container border-2 border-on-background"></div>
+              <h2 className="font-display font-black text-4xl uppercase tracking-tighter italic">Hot in the Vault</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
               {latestDrops.map((product: any) => (
