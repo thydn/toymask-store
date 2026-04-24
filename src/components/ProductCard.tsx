@@ -1,14 +1,16 @@
 import Link from "next/link";
 import Image from "next/image";
+import { urlForImage } from "@/sanity/lib/image";
 
 interface ProductCardProps {
   id: string;
   name: string;
   price: number;
-  image: string;
+  image: any;
   rating: number;
   isLimited?: boolean;
   isHot?: boolean;
+  slug?: string;
 }
 
 export default function ProductCard({
@@ -22,10 +24,10 @@ export default function ProductCard({
 }: ProductCardProps) {
   return (
     <div className="bg-surface-container-lowest border-2 border-on-surface rounded-xl overflow-hidden group active:translate-y-0.5 transition-transform">
-      <Link href={`/products/${id}`}>
+      <Link href={`/products/${slug || id}`}>
         <div className="aspect-square relative overflow-hidden bg-surface-container-low border-b-2 border-on-surface p-2">
           <img
-            src={image}
+            src={image?.asset ? urlForImage(image).url() : image}
             alt={name}
             className="w-full h-full object-cover rounded-lg"
           />
@@ -43,7 +45,7 @@ export default function ProductCard({
       </Link>
       <div className="p-3">
         <h3 className="font-display font-extrabold text-sm leading-tight uppercase truncate">
-          <Link href={`/products/${id}`}>{name}</Link>
+          <Link href={`/products/${slug || id}`}>{name}</Link>
         </h3>
         <div className="flex items-center gap-1 mt-1 mb-3">
           <span

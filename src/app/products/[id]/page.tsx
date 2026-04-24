@@ -1,23 +1,38 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BottomNav from "@/components/BottomNav";
-import products from "@/data/products.json";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
+import { urlForImage } from "@/sanity/lib/image";
 
 interface PageProps {
   params: Promise<{ id: string }>;
 }
 
 export async function generateStaticParams() {
-  return products.map((product) => ({
-    id: product.id,
-  }));
+  const query = `*[_type == "product"] { "id": slug.current }`;
+  const products = await client.fetch(query);
+  return products;
+}
+
+async function getProduct(slug: string) {
+  const query = `*[_type == "product" && slug.current == $slug][0] {
+    name,
+    "slug": slug.current,
+    price,
+    rating,
+    image,
+    category,
+    description,
+    specs
+  }`;
+  return await client.fetch(query, { slug });
 }
 
 export default async function ProductDetail({ params }: PageProps) {
   const { id } = await params;
-  const product = products.find((p) => p.id === id);
+  const product = await getProduct(id);
 
   if (!product) {
     notFound();
@@ -34,7 +49,7 @@ export default async function ProductDetail({ params }: PageProps) {
               <div className="hyperframe bg-surface-container-lowest rounded-xl overflow-hidden relative group">
                 <img
                   className="w-full aspect-square object-cover"
-                  src={product.image}
+                  src={product.image?.asset ? urlForImage(product.image).url() : product.image}
                   alt={product.name}
                 />
                 <div className="absolute top-6 left-6">
@@ -78,16 +93,16 @@ export default async function ProductDetail({ params }: PageProps) {
                   Engineering Specs
                 </h4>
                 <div className="grid grid-cols-1 gap-4">
-                  {Object.entries(product.specs).map(([key, value]) => (
+                  {(product.specs || []).map((spec: any) => (
                     <div
-                      key={key}
+                      key={spec._key}
                       className="flex justify-between items-center py-2 border-b border-on-surface/10"
                     >
                       <span className="font-body text-sm font-bold uppercase opacity-50">
-                        {key}
+                        {spec.label}
                       </span>
                       <span className="font-body text-sm font-black">
-                        {value}
+                        {spec.value}
                       </span>
                     </div>
                   ))}

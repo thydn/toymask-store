@@ -2,12 +2,26 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BottomNav from "@/components/BottomNav";
 import ProductCard from "@/components/ProductCard";
-import products from "@/data/products.json";
 import Link from "next/link";
+import { client } from "@/sanity/lib/client";
 
-export default function Home() {
-  // Logic: Lấy 4 sản phẩm mới nhất (nằm ở cuối danh sách JSON)
-  const latestDrops = [...products].reverse().slice(0, 4);
+async function getLatestProducts() {
+  const query = `*[_type == "product"] | order(_createdAt desc) [0...4] {
+    id,
+    name,
+    "slug": slug.current,
+    price,
+    rating,
+    image,
+    category,
+    isLimited,
+    isHot
+  }`;
+  return await client.fetch(query);
+}
+
+export default async function Home() {
+  const latestDrops = await getLatestProducts();
 
   return (
     <div className="min-h-screen flex flex-col">

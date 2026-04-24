@@ -2,9 +2,27 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import BottomNav from "@/components/BottomNav";
 import ProductCard from "@/components/ProductCard";
-import products from "@/data/products.json";
+import { client } from "@/sanity/lib/client";
 
-export default function Catalog() {
+async function getAllProducts() {
+  const query = `*[_type == "product"] | order(_createdAt desc) {
+    id,
+    name,
+    "slug": slug.current,
+    price,
+    rating,
+    image,
+    category,
+    isLimited,
+    isHot
+  }`;
+  return await client.fetch(query);
+}
+
+export default async function Catalog() {
+  const allProducts = await getAllProducts();
+  const categories = ["All", "Classic Wood", "Space Tech", "Deep Sea", "Archive"];
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -24,18 +42,18 @@ export default function Catalog() {
             <span className="material-symbols-outlined block">tune</span>
           </button>
           <div className="flex gap-3 overflow-x-auto no-scrollbar pb-1">
-            <span className="flex-shrink-0 px-4 py-2 bg-primary-container border-2 border-on-surface rounded-full text-sm font-extrabold uppercase tracking-wider">
-              All Artifacts
-            </span>
-            <span className="flex-shrink-0 px-4 py-2 bg-surface border-2 border-on-surface rounded-full text-sm font-bold uppercase tracking-wider opacity-60">
-              Classic Wood
-            </span>
-            <span className="flex-shrink-0 px-4 py-2 bg-surface border-2 border-on-surface rounded-full text-sm font-bold uppercase tracking-wider opacity-60">
-              Space Tech
-            </span>
-            <span className="flex-shrink-0 px-4 py-2 bg-surface border-2 border-on-surface rounded-full text-sm font-bold uppercase tracking-wider opacity-60">
-              Deep Sea
-            </span>
+            {categories.map((category, index) => (
+              <span
+                key={category}
+                className={`flex-shrink-0 px-4 py-2 border-2 border-on-surface rounded-full text-sm font-bold uppercase tracking-wider ${
+                  index === 0
+                    ? "bg-primary-container"
+                    : "bg-surface opacity-60"
+                }`}
+              >
+                {category}
+              </span>
+            ))}
           </div>
         </div>
 
