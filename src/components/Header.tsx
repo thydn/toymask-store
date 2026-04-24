@@ -8,16 +8,36 @@ export default function Header() {
           menu
         </span>
         <Link
-          href="/index"
+          href="/"
           className="font-display font-extrabold uppercase tracking-tight text-2xl text-[#1b1c15] dark:text-[#fbfaee]"
         >
           TOYMASK
         </Link>
       </div>
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-8">
+        <nav className="hidden md:flex gap-8 items-center">
+          <Link
+            href="/"
+            className="font-display font-bold uppercase tracking-tighter text-sm hover:text-primary transition-colors"
+          >
+            Home
+          </Link>
+          <Link
+            href="/products"
+            className="font-display font-bold uppercase tracking-tighter text-sm hover:text-primary transition-colors"
+          >
+            Shop
+          </Link>
+          <Link
+            href="/about"
+            className="font-display font-bold uppercase tracking-tighter text-sm hover:text-primary transition-colors"
+          >
+            About
+          </Link>
+        </nav>
         <Link
           href="/cart"
-          className="material-symbols-outlined text-[#1b1c15] dark:text-[#fbfaee] cursor-pointer"
+          className="material-symbols-outlined text-[#1b1c15] dark:text-[#fbfaee] cursor-pointer hover:bg-secondary-container p-2 rounded-full transition-colors"
         >
           shopping_bag
         </Link>
