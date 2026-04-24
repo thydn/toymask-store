@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-background: #fbfaee;
+  --color-on-background: #1b1c15;
+  --color-primary: #705d00;
+  --color-primary-container: #ffd700;
+  --color-secondary: #2a6a45;
+  --color-secondary-container: #aef2c2;
+  --color-surface: #fbfaee;
+  --color-on-surface: #1b1c15;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f5f4e8;
+  --color-surface-container: #efeee3;
+  --color-outline: #7e775f;
+  --color-error: #ba1a1a;
+  
+  --font-display: var(--font-plus-jakarta), sans-serif;
+  --font-body: var(--font-manrope), sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@utility hard-shadow {
+  box-shadow: 4px 4px 0px 0px #1b1c15;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@utility hard-shadow-sm {
+  box-shadow: 2px 2px 0px 0px #1b1c15;
+}
+
+@utility active-hard-shadow {
+  &:active {
+    box-shadow: 0px 0px 0px 0px #1b1c15;
+    transform: translate(2px, 2px);
   }
 }
 
+@utility hyperframe {
+  @apply border-2 border-on-background;
+}
+
+@utility no-scrollbar {
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+:root {
+  --background: #fbfaee;
+  --on-background: #1b1c15;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-background text-on-background antialiased;
 }

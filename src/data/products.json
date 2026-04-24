@@ -1,0 +1,78 @@
+[
+  {
+    "id": "mecha-oak-v1",
+    "name": "Mecha-Oak V1",
+    "price": 124,
+    "rating": 4.9,
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuAMgxmrDz-OIPi6Xh270UvQE29-YA7rX-99cNBcZbcJVgf-cCQg1J8fa1WjE4JWcKMN0OnUgm0gz96pCk0estTJZFkRxJyD4wQ5Vhgj7du27lTVtctC5qX6Qx0yaWBdgntJM4oZwYdmF1rjQ8yjJt7S2NMC3Th0nH2DpThMoL2wijLdie6bBH1kuWdj3Cz1nfEKryoz05BJ5-QyIzuWm6CN4MJp10EqyUSJGkOP6dJc60Qr3u-q0lWwNq-Z1pkZGlmhTefeXuO9XVQ",
+    "category": "Classic Wood",
+    "isLimited": true,
+    "description": "A minimalist geometric wooden toy robot with primary color accents. Engineered for structural integrity and timeless play.",
+    "specs": {
+      "articulation": "12-point",
+      "material": "Sustainably sourced Oak",
+      "finish": "Non-toxic primary lacquer"
+    }
+  },
+  {
+    "id": "neon-spectre",
+    "name": "Neon Spectre",
+    "price": 89,
+    "rating": 5.0,
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBJAuseo6PNBy6AN7SpAVTsn6udpmE7mfGNSTfnF-_soCGeZaXluzVwodHMFwEnB8OUgBaanubkPsY2Z2ml_L2c69NWE_B_cD-NMA6e2AboNXOo8oFOmsJ1Qa29AfT1qWxA1s3NLFGlehgjv7lQrtFOP1hsxj8Am8NhkpMsjRIshsHwdzq3I4d2-PdDQjcN6WRibfVaOy_q-9P56TQKW6rBVO23U3tU_9UQTAB7Pa0PGqzh2rTjPc32vlnxr1ryZN9PyOUVoxFxkPY",
+    "category": "Space Tech",
+    "isLimited": false,
+    "description": "High-end designer vinyl art toy in matte black finish with vibrant neon green glowing details. A centerpiece for any futuristic desk.",
+    "specs": {
+      "material": "Premium Matte Vinyl",
+      "height": "8 inches",
+      "features": "Glow-in-the-dark accents"
+    }
+  },
+  {
+    "id": "orbit-voyager",
+    "name": "Orbit Voyager",
+    "price": 210,
+    "rating": 4.7,
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuBvp4S9eDOawL4ZmwKoCw8rIgQPR9u4xALlIahJYoiNvShrEpsyzDgFFvJlo-sYXFuYHeQ69yKQhwqApa8i-QbP6Y2zXhXs8Xw8RBm6wGwcObw7E5cK5uVu0tt_EKHc_fRspJ4kXMmAxQTTYgf-miTD5wxJR-8_V_AE2ZKEkIX6kqrEnhQ6O8LsDAN21edT1fhkom7XiS1TiDXUsFxQGE45VDK-sJ9BbQ3Jv4--FCllbDhZ_ZGMoLzj98q5Lg0GKqVT5QV2t29dZ60",
+    "category": "Space Tech",
+    "isLimited": false,
+    "description": "Detailed vintage-style chrome space rocket toy. Reflects the golden age of space exploration with cinematic lighting effects.",
+    "specs": {
+      "material": "Chromed Zinc Alloy",
+      "weight": "1.2kg",
+      "edition": "Standard"
+    }
+  },
+  {
+    "id": "abyss-scout",
+    "name": "Abyss Scout",
+    "price": 155,
+    "rating": 4.8,
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD5LMKgC0OcKXPlCNqE7kqK927DzECEUoTVL7W2uwBs5dh_LuHn-KJS41spre9Bc8wFdLwmAiNODkuQ6P0xcMmoy04pW854ZWYHLxpxYipBPqmJX6GpXZAyAlnZcWyDa_tVPeXe0_nt09n922Fq46aPkm52mzdZESPN105FmcT4oa5t1eCb9Um4GxdyZjPGly7uNXiCm0TiaxALVV2lIDvkNRSvoBNKHJtV4ry7ZGBRdWoxmCQkibubX7Qa1wIKwda4ma3rBtMWLYk",
+    "category": "Deep Sea",
+    "isLimited": true,
+    "isHot": true,
+    "description": "Whimsical deep sea explorer toy with translucent jellyfish-like textures and internal LED soft blue glow.",
+    "specs": {
+      "material": "Translucent Silicone & Resin",
+      "lighting": "Internal LED (Battery included)",
+      "depth": "Gallery grade"
+    }
+  },
+  {
+    "id": "titan-bear-v1",
+    "name": "Titan Bear V1",
+    "price": 249,
+    "rating": 4.9,
+    "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCKqhOJbjsXLuxgNqelOhIH0YTl7HFnSa0bdH6Tr9aRJA7m9d1NfR0EIi5d1P7VHs_AltcQE7lOMfZuEzGJ_VDLiL723f-VXbvotFT9GlH49WyFeU6HNiavHuXaXZbW82h0diakaZBg5CwW623sKnHsY-gJfzJbnWWxaMVAWoaMNjx1R-YhB80zbfaRAP92WHR_KiBUOejJ6p-waDPkzrHsVubsVSP-jNDF2Ci_DO-QFYgmZ1sxwhrkSHuKy_at8Qc1XFwIOyPLICQ",
+    "category": "Archive",
+    "isLimited": true,
+    "description": "The definitive intersection of industrial brutalism and luxury collectible art. Hand-finished with genuine metallic leafing and precision-molded polycarbonate.",
+    "specs": {
+      "articulation": "32-point system",
+      "material": "Military-grade resin with gold-leaf accents",
+      "packaging": "Serialized protective vault"
+    }
+  }
+]
