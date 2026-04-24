@@ -13,6 +13,7 @@ interface ProductCardProps {
   rating: number;
   image: any;
   category: string;
+  stock: number;
   isLimited?: boolean;
   isHot?: boolean;
 }
@@ -25,20 +26,24 @@ export default function ProductCard({
   rating,
   image,
   category,
+  stock,
   isLimited,
   isHot,
 }: ProductCardProps) {
   const { addToCart } = useCart();
+  const isOutOfStock = stock <= 0;
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
+    if (isOutOfStock) return;
     addToCart({
       id,
       name,
       price,
       image,
       slug,
+      stock,
       quantity: 1
     });
   };
@@ -75,9 +80,16 @@ export default function ProductCard({
           <span className="font-display font-black text-lg">${price}</span>
           <button 
             onClick={handleAddToCart}
-            className="bg-primary-container border-2 border-on-surface w-8 h-8 rounded-full flex items-center justify-center active:scale-90 transition-transform"
+            disabled={isOutOfStock}
+            className={`${
+              isOutOfStock 
+              ? 'bg-surface-container-highest border-on-surface/20 cursor-not-allowed text-on-surface/20' 
+              : 'bg-primary-container border-on-surface active:scale-90'
+            } border-2 w-8 h-8 rounded-full flex items-center justify-center transition-all`}
           >
-            <span className="material-symbols-outlined text-sm">add</span>
+            <span className="material-symbols-outlined text-sm">
+              {isOutOfStock ? 'close' : 'add'}
+            </span>
           </button>
         </div>
       </div>

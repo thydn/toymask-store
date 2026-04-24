@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
+import AddToCartButton from "@/components/AddToCartButton";
 
 export const revalidate = 0; // Luôn lấy dữ liệu mới nhất
 
@@ -20,9 +21,12 @@ export async function generateStaticParams() {
 
 async function getProduct(slug: string) {
   const query = `*[_type == "product" && slug.current == $slug][0] {
+    "_id": _id,
     name,
     "slug": slug.current,
     price,
+    sku,
+    stock,
     rating,
     image,
     category,
@@ -39,6 +43,16 @@ export default async function ProductDetail({ params }: PageProps) {
   if (!product) {
     notFound();
   }
+
+  const isOutOfStock = (product.stock || 0) <= 0;
+  const productForCart = {
+    id: product._id,
+    name: product.name,
+    price: product.price,
+    image: product.image,
+    slug: product.slug,
+    stock: product.stock || 0
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -77,15 +91,13 @@ export default async function ProductDetail({ params }: PageProps) {
               </div>
 
               <div className="flex flex-col gap-4">
-                <button className="w-full py-5 bg-primary-container text-on-surface font-black text-xl rounded-full hyperframe hard-shadow transition-all hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#1b1c15] active:translate-y-[2px] active:shadow-none uppercase tracking-tight">
-                  Secure This Artifact
-                </button>
+                <AddToCartButton product={productForCart} isOutOfStock={isOutOfStock} />
                 <div className="flex items-center justify-between p-4 bg-surface-container-low rounded-xl border-2 border-on-surface">
                   <span className="font-bold uppercase text-xs opacity-60">
                     Vault Availability
                   </span>
-                  <span className="font-mono text-secondary font-bold">
-                    IN_STOCK // 004
+                  <span className={`font-mono font-bold ${isOutOfStock ? 'text-error' : 'text-secondary'}`}>
+                    {isOutOfStock ? 'DEPLETED' : 'IN_STOCK'} // {product.stock?.toString().padStart(3, '0') || "000"}
                   </span>
                 </div>
               </div>

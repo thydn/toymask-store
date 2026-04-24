@@ -28,6 +28,19 @@ export const product = defineType({
       validation: (Rule) => Rule.required().min(0),
     }),
     defineField({
+      name: "sku",
+      title: "SKU",
+      type: "string",
+      validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "stock",
+      title: "Stock Quantity",
+      type: "number",
+      initialValue: 10,
+      validation: (Rule) => Rule.required().min(0),
+    }),
+    defineField({
       name: "rating",
       title: "Rating",
       type: "number",

@@ -9,13 +9,14 @@ interface CartItem {
   image: any;
   quantity: number;
   slug: string;
+  stock: number;
 }
 
 interface CartContextType {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
   removeFromCart: (id: string) => void;
-  updateQuantity: (id: string, delta: number) => void;
+  updateQuantity: (id: string, delta: number) => boolean; // Return false if stock limit reached
   clearCart: () => void;
   cartCount: number;
   totalPrice: number;
@@ -47,6 +48,11 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
     setCart((prev) => {
       const existing = prev.find((i) => i.id === item.id);
       if (existing) {
+        // Check stock limit
+        if (existing.quantity >= item.stock) {
+          alert(`The vault only contains ${item.stock} units of this artifact.`);
+          return prev;
+        }
         return prev.map((i) =>
           i.id === item.id ? { ...i, quantity: i.quantity + 1 } : i
         );
@@ -60,15 +66,23 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   const updateQuantity = (id: string, delta: number) => {
+    let success = true;
     setCart((prev) =>
       prev.map((item) => {
         if (item.id === id) {
-          const newQty = Math.max(1, item.quantity + delta);
+          const newQty = item.quantity + delta;
+          if (newQty > item.stock) {
+            alert(`The vault only contains ${item.stock} units of this artifact.`);
+            success = false;
+            return item;
+          }
+          if (newQty < 1) return item;
           return { ...item, quantity: newQty };
         }
         return item;
       })
     );
+    return success;
   };
 
   const clearCart = () => setCart([]);
