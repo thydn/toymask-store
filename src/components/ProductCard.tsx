@@ -26,42 +26,37 @@ export default function ProductCard({
   isHot,
 }: ProductCardProps) {
   return (
-    <div className="group flex flex-col h-full bg-surface border-2 border-on-background rounded-xl overflow-hidden hover:translate-y-[-4px] transition-transform">
-      <div className="relative aspect-square overflow-hidden border-b-2 border-on-background">
+    <div className="bg-surface-container-lowest border-2 border-on-surface rounded-xl overflow-hidden group active:translate-y-0.5 transition-transform h-full flex flex-col">
+      <div className="aspect-square relative overflow-hidden bg-surface-container-low border-b-2 border-on-surface p-2">
         {image && (
           <Image
             src={urlForImage(image).url()}
             alt={name}
             fill
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+            className="w-full h-full object-cover rounded-lg"
           />
         )}
         {(isLimited || isHot) && (
-          <div className="absolute top-4 left-4 bg-primary-container text-on-background border-2 border-on-background px-3 py-1 font-black text-xs uppercase rounded-full">
+          <span className={`absolute top-3 left-3 border-2 border-on-surface px-2 py-0.5 text-[10px] font-black uppercase rounded-sm ${isHot ? 'bg-primary-container' : 'bg-secondary-container'}`}>
             {isHot ? "Hot" : "Limited"}
-          </div>
+          </span>
         )}
       </div>
       
-      <div className="p-5 flex-grow flex flex-col">
-        <div className="flex justify-between items-start mb-2">
-          <h3 className="font-display font-black text-xl uppercase tracking-tighter">
-            <Link href={`/products/${slug}`}>{name}</Link>
-          </h3>
-          <div className="flex items-center gap-1 bg-surface-container-high px-2 py-0.5 rounded-full border-[1px] border-on-background">
-            <span className="material-symbols-outlined text-sm" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
-            <span className="text-xs font-bold">{rating}</span>
-          </div>
+      <div className="p-3 flex flex-col flex-grow">
+        <h3 className="font-display font-extrabold text-sm leading-tight uppercase truncate mb-1">
+          <Link href={`/products/${slug}`}>{name}</Link>
+        </h3>
+        
+        <div className="flex items-center gap-1 mb-3">
+          <span className="material-symbols-outlined text-xs" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+          <span className="text-[10px] font-black">{rating}</span>
         </div>
         
-        <p className="text-on-surface/60 text-sm font-medium mb-4 italic">
-          {category} artifact. Serialized edition.
-        </p>
-        
-        <div className="mt-auto flex items-center justify-between">
-          <span className="font-display font-black text-2xl">${price}</span>
-          <button className="bg-on-background text-surface p-2 rounded-full hard-shadow active:translate-y-0.5 transition-all">
-            <span className="material-symbols-outlined">add_shopping_cart</span>
+        <div className="flex items-center justify-between gap-2 mt-auto">
+          <span className="font-display font-black text-lg">${price}</span>
+          <button className="bg-primary-container border-2 border-on-surface w-8 h-8 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+            <span className="material-symbols-outlined text-sm">add</span>
           </button>
         </div>
       </div>
