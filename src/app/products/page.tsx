@@ -4,6 +4,9 @@ import BottomNav from "@/components/BottomNav";
 import ProductCard from "@/components/ProductCard";
 import { client } from "@/sanity/lib/client";
 
+export const revalidate = 0; // Luôn lấy dữ liệu mới nhất
+
+
 async function getAllProducts() {
   const query = `*[_type == "product"] | order(_createdAt desc) {
     id,

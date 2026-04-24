@@ -5,6 +5,9 @@ import ProductCard from "@/components/ProductCard";
 import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 
+export const revalidate = 0; // Luôn lấy dữ liệu mới nhất
+
+
 async function getLatestProducts() {
   const query = `*[_type == "product"] | order(_createdAt desc) [0...4] {
     id,

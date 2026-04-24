@@ -6,6 +6,8 @@ import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 import { urlForImage } from "@/sanity/lib/image";
 
+export const revalidate = 0; // Luôn lấy dữ liệu mới nhất
+
 interface PageProps {
   params: Promise<{ id: string }>;
 }
