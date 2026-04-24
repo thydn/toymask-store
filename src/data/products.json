@@ -7,7 +7,7 @@
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuCKqhOJbjsXLuxgNqelOhIH0YTl7HFnSa0bdH6Tr9aRJA7m9d1NfR0EIi5d1P7VHs_AltcQE7lOMfZuEzGJ_VDLiL723f-VXbvotFT9GlH49WyFeU6HNiavHuXaXZbW82h0diakaZBg5CwW623sKnHsY-gJfzJbnWWxaMVAWoaMNjx1R-YhB80zbfaRAP92WHR_KiBUOejJ6p-waDPkzrHsVubsVSP-jNDF2Ci_DO-QFYgmZ1sxwhrkSHuKy_at8Qc1XFwIOyPLICQ",
     "category": "Space Tech",
     "isLimited": true,
-    "isHot": true,
+    "isHot": false,
     "description": "A sentinel of the deep cosmos, crafted from iridescent crystalline resin. Features reactive bio-luminescent internals.",
     "specs": {
       "material": "Bio-Luminescent Resin",
@@ -67,7 +67,7 @@
     "rating": 4.8,
     "image": "https://lh3.googleusercontent.com/aida-public/AB6AXuD5LMKgC0OcKXPlCNqE7kqK927DzECEUoTVL7W2uwBs5dh_LuHn-KJS41spre9Bc8wFdLwmAiNODkuQ6P0xcMmoy04pW854ZWYHLxpxYipBPqmJX6GpXZAyAlnZcWyDa_tVPeXe0_nt09n922Fq46aPkm52mzdZESPN105FmcT4oa5t1eCb9Um4GxdyZjPGly7uNXiCm0TiaxALVV2lIDvkNRSvoBNKHJtV4ry7ZGBRdWoxmCQkibubX7Qa1wIKwda4ma3rBtMWLYk",
     "category": "Deep Sea",
-    "isLimited": true,
+    "isLimited": false,
     "isHot": true,
     "description": "Whimsical deep sea explorer toy with translucent jellyfish-like textures and internal LED soft blue glow.",
     "specs": {
