@@ -45,13 +45,16 @@ export default async function ProductDetail({ params }: PageProps) {
   }
 
   const isOutOfStock = (product.stock || 0) <= 0;
+  const productSku = product.sku || product._id.slice(-6).toUpperCase();
+  
   const productForCart = {
     id: product._id,
     name: product.name,
     price: product.price,
     image: product.image,
     slug: product.slug,
-    stock: product.stock || 0
+    stock: product.stock || 0,
+    sku: productSku
   };
 
   return (

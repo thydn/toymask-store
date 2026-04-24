@@ -10,6 +10,7 @@ interface CartItem {
   quantity: number;
   slug: string;
   stock: number;
+  sku: string;
 }
 
 interface CartContextType {

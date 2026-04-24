@@ -57,7 +57,7 @@ export default function Cart() {
                           {item.name}
                         </h3>
                         <p className="text-xs font-mono uppercase text-on-surface-variant opacity-70 mt-1">
-                          Series: Artifact / SKU: {item.id.slice(-6).toUpperCase()}
+                          Series: Artifact / SKU: {item.sku}
                         </p>
                       </div>
                       <span className="font-mono text-xl font-bold">

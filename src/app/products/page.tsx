@@ -26,6 +26,7 @@ export default function Catalog() {
         image,
         category,
         stock,
+        sku,
         isLimited,
         isHot
       }`;
