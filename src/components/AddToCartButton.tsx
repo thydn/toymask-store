@@ -10,6 +10,7 @@ interface AddToCartButtonProps {
     image: any;
     slug: string;
     stock: number;
+    sku: string;
   };
   isOutOfStock: boolean;
 }
@@ -25,6 +26,7 @@ export default function AddToCartButton({ product, isOutOfStock }: AddToCartButt
       image: product.image,
       slug: product.slug,
       stock: product.stock,
+      sku: product.sku,
       quantity: 1
     });
   };
