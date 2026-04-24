@@ -29,9 +29,10 @@ export const product = defineType({
     }),
     defineField({
       name: "sku",
-      title: "SKU",
+      title: "SKU / Mã Sản Phẩm",
       type: "string",
-      description: "Mã sản phẩm (Nếu để trống sẽ tự động tạo từ ID)",
+      description: "Dùng để trích xuất Excel & Thống kê. Nếu bỏ trống, hệ thống sẽ tự lấy ID làm mã.",
+      validation: (Rule) => Rule.optional(),
     }),
     defineField({
       name: "stock",
