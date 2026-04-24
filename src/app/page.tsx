@@ -6,7 +6,8 @@ import products from "@/data/products.json";
 import Link from "next/link";
 
 export default function Home() {
-  const featuredProducts = products.slice(0, 4);
+  // Logic: Lấy 4 sản phẩm mới nhất (nằm ở cuối danh sách JSON)
+  const latestDrops = [...products].reverse().slice(0, 4);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -140,7 +141,7 @@ export default function Home() {
               </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {featuredProducts.map((product) => (
+              {latestDrops.map((product) => (
                 <ProductCard key={product.id} {...product} />
               ))}
             </div>
