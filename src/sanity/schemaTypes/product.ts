@@ -28,12 +28,6 @@ export const product = defineType({
       validation: (Rule) => Rule.required().min(0),
     }),
     defineField({
-      name: "sku",
-      title: "SKU / Mã Sản Phẩm",
-      type: "string",
-      description: "Dùng để trích xuất Excel & Thống kê. Nếu bỏ trống, hệ thống sẽ tự lấy ID làm mã.",
-    }),
-    defineField({
       name: "stock",
       title: "Stock Quantity",
       type: "number",
@@ -98,6 +92,11 @@ export const product = defineType({
           ],
         },
       ],
+    }),
+    defineField({
+      name: "sku",
+      title: "SKU (Optional)",
+      type: "string",
     }),
   ],
 });
