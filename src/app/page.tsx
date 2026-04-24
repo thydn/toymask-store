@@ -7,10 +7,9 @@ import { client } from "@/sanity/lib/client";
 
 export const revalidate = 0; // Luôn lấy dữ liệu mới nhất
 
-
 async function getLatestProducts() {
   const query = `*[_type == "product"] | order(_createdAt desc) [0...4] {
-    id,
+    "_id": _id,
     name,
     "slug": slug.current,
     price,
@@ -20,7 +19,9 @@ async function getLatestProducts() {
     isLimited,
     isHot
   }`;
-  return await client.fetch(query);
+  const data = await client.fetch(query);
+  console.log("Sanity Data:", data); // Để kiểm tra trong log
+  return data;
 }
 
 export default async function Home() {
@@ -29,137 +30,98 @@ export default async function Home() {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
-      <main className="flex-grow pt-20 pb-24 md:pb-0">
+      <main className="flex-grow pt-20">
         {/* Hero Section */}
-        <section className="px-6 py-12 md:py-24 max-w-7xl mx-auto">
-          <div className="relative grid grid-cols-1 md:grid-cols-12 gap-0 border-2 border-on-background rounded-xl overflow-hidden bg-surface-container-low">
-            <div className="md:col-span-7 p-8 md:p-16 flex flex-col justify-center items-start z-10">
-              <span className="bg-secondary-container text-on-secondary-container px-4 py-1 border-2 border-on-background font-bold text-sm mb-6 rounded-full uppercase tracking-widest">
-                High-End Curations
-              </span>
-              <h1 className="font-display font-extrabold text-5xl md:text-7xl lg:text-8xl text-on-surface leading-[0.9] tracking-tighter mb-8 uppercase">
-                UNLOCK THE <br />{" "}
-                <span className="text-primary-container text-stroke">
-                  VAULT OF JOY
-                </span>
-              </h1>
-              <p className="text-xl md:text-2xl text-on-surface/80 max-w-lg mb-10 leading-relaxed">
-                Where architectural precision meets childhood wonder. Discover
-                our limited-edition artisanal toy gallery.
-              </p>
+        <section className="relative h-[80vh] flex items-center justify-center overflow-hidden bg-surface">
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,214,0,0.15),transparent_70%)]"></div>
+          </div>
+
+          <div className="container mx-auto px-6 relative z-10 flex flex-col items-center text-center">
+            <h1 className="text-7xl md:text-9xl font-display font-black tracking-tighter uppercase leading-[0.8] mb-6">
+              <span className="block text-on-surface">Vault</span>
+              <span className="block text-transparent stroke-text">Of Joy</span>
+            </h1>
+            <p className="max-w-2xl text-lg md:text-xl font-medium text-on-surface/80 mb-8 uppercase tracking-widest">
+              Exclusive Designer Toys & Digital Artifacts for the Modern Collector
+            </p>
+            <div className="flex gap-4">
               <Link
                 href="/products"
-                className="bg-primary-container text-on-background border-2 border-on-background px-8 py-4 rounded-full font-display font-black text-xl uppercase hard-shadow-hover transition-all inline-block"
+                className="bg-on-background text-background px-8 py-4 rounded-full font-display font-black uppercase text-xl hard-shadow-hover transition-all"
               >
-                Explore Collections
+                Enter the Vault
               </Link>
             </div>
-            <div className="md:col-span-5 h-[400px] md:h-auto relative bg-surface-container-highest border-l-0 md:border-l-2 border-on-background overflow-hidden">
-              <img
-                className="w-full h-full object-cover"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsBBb3uI2e8qGguEmml0jmVvEgZS5xHn8dE2qqoIW7i1Q8AC4HHtCRcW-G7iNGTOU4lb3adH-II6qS-q_w5LPENj732ZQuOH45Rb4FhjyWYoee76sbPNI5g3IYY_S09_c78jN7qyT7V54_BybRzQXHLeZUO2-QtvGsGUuRjX9rGiEEhAcSWgTobWZUNxNZvHtxCNMhLhgMMmWDgtx6pXIscNIT8s7hvuyaSw8zTPyxfQEIsAJBLqFkQ_Ld8fQetx7avnKVruI1bko"
-                alt="Modern designer toy"
-              />
-            </div>
           </div>
         </section>
 
-        {/* Featured Collections: Asymmetric Bento */}
-        <section className="px-6 py-16 bg-surface">
+        {/* Featured Collections (Bento) */}
+        <section className="px-6 py-20 bg-surface-container-low">
           <div className="max-w-7xl mx-auto">
-            <div className="flex justify-between items-end mb-12">
-              <div>
-                <h2 className="font-display font-black text-4xl uppercase tracking-tighter">
-                  The Curated Sets
-                </h2>
-                <p className="text-on-surface/60 font-medium">
-                  Bespoke categories for the serious collector.
-                </p>
-              </div>
-              <button className="text-on-surface font-display font-bold border-b-2 border-on-background pb-1 hover:text-primary transition-colors uppercase text-sm">
-                View All Series
-              </button>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Collection Card 1 */}
-              <div className="group relative overflow-hidden rounded-xl border-2 border-on-background bg-surface-container-high hard-shadow-hover transition-all">
-                <div className="aspect-[4/5] overflow-hidden">
-                  <img
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFWimXFQCqjGGka8lV_i5pumOpaHPGmzb2aBkMRnizYHJx1isqSZLeSS-SsRwPY-jKFIxII7_cXKK6xnLCpj2lSp5Y1dWb3a4s83CYDqnmuh8qDDdOsqLDhiNcrP0TJ3g6r7SK94xdLQvHz0oN3bxWFnlOT0BmD1khUjSODEOJgPS09tYSeOKsAzd4fLHE4soLHgxtpR5Lte0ZS8VTqHWilw6A9-I5AyXQOSQJbUqFegDdaxo-F9RtLSlCdbAfKRzHbjHeQ7mw5EU"
-                    alt="Classic Wood"
-                  />
-                </div>
-                <div className="p-6 border-t-2 border-on-background bg-surface">
-                  <h3 className="font-display font-bold text-2xl uppercase">
+            <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-6 h-auto md:h-[600px]">
+              <div className="md:col-span-2 md:row-span-2 bg-primary-container border-2 border-on-background rounded-2xl p-8 flex flex-col justify-between group overflow-hidden relative hard-shadow">
+                <div className="relative z-10">
+                  <h3 className="text-4xl font-display font-black uppercase mb-2">
                     Classic Wood
                   </h3>
-                  <p className="text-sm text-on-surface/60 mb-4 italic">
-                    Sustainable Nordic Heritage
-                  </p>
-                  <span className="material-symbols-outlined text-3xl">
-                    arrow_right_alt
-                  </span>
+                  <p className="font-bold opacity-70">Handcrafted Heritage</p>
                 </div>
-              </div>
-              {/* Collection Card 2 */}
-              <div className="group relative overflow-hidden rounded-xl border-2 border-on-background bg-secondary-container hard-shadow-hover transition-all">
-                <div className="aspect-[4/5] overflow-hidden">
+                <div className="absolute bottom-[-20%] right-[-10%] w-2/3 grayscale group-hover:grayscale-0 transition-all duration-500 rotate-12 group-hover:rotate-0">
                   <img
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCM1t6F1J-mObpA01nnqtmR8mgLly3Q3z0D8B0mZszduY6UUIhccjgVTrztPIlygwGeOr0dKwnbKf1xE2052PzJAxxkZw1XTDUNbRnhBC3qKEvV8bkQ31BmRGiWzKwokmYsTgqmkm1ctzKdlPt-IBNu4-7m0oePv4Yjvqs18bVQmg-CmIUyUtpSodsESDcn8XqUrmJJ1wvYrGuWjJuB03aq3a9aj3cXgo2phmFKGB_2EMNlOCC-bq0P3IbdFXF4oYchfh9pRybsSUw"
-                    alt="Space Tech"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAMgxmrDz-OIPi6Xh270UvQE29-YA7rX-99cNBcZbcJVgf-cCQg1J8fa1WjE4JWcKMN0OnUgm0gz96pCk0estTJZFkRxJyD4wQ5Vhgj7du27lTVtctC5qX6Qx0yaWBdgntJM4oZwYdmF1rjQ8yjJt7S2NMC3Th0nH2DpThMoL2wijLdie6bBH1kuWdj3Cz1nfEKryoz05BJ5-QyIzuWm6CN4MJp10EqyUSJGkOP6dJc60Qr3u-q0lWwNq-Z1pkZGlmhTefeXuO9XVQ"
+                    alt="Wood Toy"
+                    className="w-full h-full object-contain"
                   />
                 </div>
-                <div className="p-6 border-t-2 border-on-background bg-surface">
-                  <h3 className="font-display font-bold text-2xl uppercase">
+              </div>
+
+              <div className="md:col-span-2 bg-secondary-container border-2 border-on-background rounded-2xl p-8 flex justify-between items-center group overflow-hidden relative hard-shadow">
+                <div className="relative z-10">
+                  <h3 className="text-3xl font-display font-black uppercase mb-1">
                     Space Tech
                   </h3>
-                  <p className="text-sm text-on-surface/60 mb-4 italic">
-                    Interstellar Precision Models
-                  </p>
-                  <span className="material-symbols-outlined text-3xl">
-                    arrow_right_alt
-                  </span>
+                  <p className="font-bold opacity-70">Future-Proofed Vinyl</p>
                 </div>
-              </div>
-              {/* Collection Card 3 */}
-              <div className="group relative overflow-hidden rounded-xl border-2 border-on-background bg-primary-container hard-shadow-hover transition-all">
-                <div className="aspect-[4/5] overflow-hidden">
+                <div className="w-1/3 grayscale group-hover:grayscale-0 transition-all duration-500 scale-125 translate-x-4">
                   <img
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHD31LiJtouYXxnKcRpc5DyFnSNVE6gaLTtMwb_lSQJsalarUoDKSG1xtY-wWxZv5GW50cOfBmWnfvxAgLdHFcdKVSIhws0OhWSnbQGFl93WVQ16amOiz8Kf4BSvlnVUZ-KkemLIF1eSUflxEM8C8YjgHz4qR_AyoPNGKaJ2ryreRCIZnO7KDYt25qiaBgc6mhVQ4oAmpMu_WEA7731lW6BG99kJjNw2vql6212FfOPrEz6bv-q-s4bWdlT1wSvpFIzfsxRjsOoGU"
-                    alt="Deep Sea"
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJAuseo6PNBy6AN7SpAVTsn6udpmE7mfGNSTfnF-_soCGeZaXluzVwodHMFwEnB8OUgBaanubkPsY2Z2ml_L2c69NWE_B_cD-NMA6e2AboNXOo8oFOmsJ1Qa29AfT1qWxA1s3NLFGlehgjv7lQrtFOP1hsxj8Am8NhkpMsjRIshsHwdzq3I4d2-PdDQjcN6WRibfVaOy_q-9P56TQKW6rBVO23U3tU_9UQTAB7Pa0PGqzh2rTjPc32vlnxr1ryZN9PyOUVoxFxkPY"
+                    alt="Space Toy"
+                    className="w-full h-full object-contain"
                   />
                 </div>
-                <div className="p-6 border-t-2 border-on-background bg-surface">
-                  <h3 className="font-display font-bold text-2xl uppercase">
-                    Deep Sea Wonders
+              </div>
+
+              <div className="md:col-span-2 bg-surface-container-high border-2 border-on-background rounded-2xl p-8 flex justify-between items-center group overflow-hidden relative hard-shadow">
+                <div className="relative z-10">
+                  <h3 className="text-3xl font-display font-black uppercase mb-1">
+                    Deep Sea
                   </h3>
-                  <p className="text-sm text-on-surface/60 mb-4 italic">
-                    Abyssal Mechanical Life
-                  </p>
-                  <span className="material-symbols-outlined text-3xl">
-                    arrow_right_alt
-                  </span>
+                  <p className="font-bold opacity-70">Bio-Luminescent Art</p>
+                </div>
+                <div className="w-1/3 grayscale group-hover:grayscale-0 transition-all duration-500 -rotate-12 translate-y-4">
+                  <img
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5LMKgC0OcKXPlCNqE7kqK927DzECEUoTVL7W2uwBs5dh_LuHn-KJS41spre9Bc8wFdLwmAiNODkuQ6P0xcMmoy04pW854ZWYHLxpxYipBPqmJX6GpXZAyAlnZcWyDa_tVPeXe0_nt09n922Fq46aPkm52mzdZESPN105FmcT4oa5t1eCb9Um4GxdyZjPGly7uNXiCm0TiaxALVV2lIDvkNRSvoBNKHJtV4ry7ZGBRdWoxmCQkibubX7Qa1wIKwda4ma3rBtMWLYk"
+                    alt="Sea Toy"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Best Sellers: Product Grid */}
-        <section className="px-6 py-16 bg-surface-container-low border-y-2 border-on-background">
+        {/* Latest Drops Grid */}
+        <section className="px-6 py-20 bg-surface">
           <div className="max-w-7xl mx-auto">
-            <div className="flex items-center gap-4 mb-12">
-              <div className="h-2 w-12 bg-primary-container border-2 border-on-background"></div>
-              <h2 className="font-display font-black text-4xl uppercase tracking-tighter italic">
-                Hot in the Vault
+            <div className="flex justify-between items-end mb-12">
+              <h2 className="text-5xl font-display font-black uppercase">
+                Hot in the <br /> Vault
               </h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {latestDrops.map((product) => (
-                <ProductCard key={product.id} {...product} />
+              {latestDrops.map((product: any) => (
+                <ProductCard key={product._id} id={product._id} {...product} />
               ))}
             </div>
           </div>
@@ -188,49 +150,49 @@ export default async function Home() {
                 Fast Shipping
               </h3>
               <p className="text-on-surface/70">
-                Secure, tracked priority handling for all orders worldwide
-                within 48 hours.
+                Secure, tracked priority handling for all orders worldwide.
               </p>
             </div>
-            <div className="flex flex-col items-center text-center p-8 border-2 border-on-background rounded-xl bg-surface-container-high hard-shadow">
-              <span className="material-symbols-outlined text-6xl mb-4 text-primary">
-                workspace_premium
+            <div className="flex flex-col items-center text-center p-8 border-2 border-on-background rounded-xl bg-secondary-container hard-shadow">
+              <span className="material-symbols-outlined text-6xl mb-4 text-on-background">
+                redeem
               </span>
               <h3 className="font-display font-black text-2xl uppercase mb-2">
-                Lifetime Warranty
+                The Vault Pass
               </h3>
               <p className="text-on-surface/70">
-                We stand by our craftsmanship. If it breaks, we replace the soul
-                of the toy.
+                Join our elite circle for early access and members-only
+                artifacts.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Newsletter Subscription */}
-        <section className="px-6 py-20 bg-on-background text-surface overflow-hidden relative">
-          <div className="max-w-4xl mx-auto text-center relative z-10">
-            <h2 className="font-display font-black text-5xl md:text-6xl mb-8 uppercase italic leading-none">
-              Join the Inner Circle
-            </h2>
-            <p className="text-xl text-surface/60 mb-10">
-              Sign up for early access to &quot;The Vault&quot; drops and member-only
-              curated gallery launches.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
-              <input
-                className="bg-transparent border-2 border-surface/30 rounded-xl px-6 py-4 flex-grow focus:border-primary-container focus:ring-0 text-surface placeholder:text-surface/30 outline-none"
-                placeholder="collector@email.com"
-                type="email"
-              />
-              <button className="bg-primary-container text-on-background px-8 py-4 rounded-xl font-display font-black uppercase whitespace-nowrap hard-shadow hover:translate-y-1 transition-all">
-                Secure Access
-              </button>
+        {/* Newsletter */}
+        <section className="px-6 py-20">
+          <div className="max-w-7xl mx-auto bg-on-surface text-surface rounded-3xl p-12 flex flex-col md:flex-row items-center justify-between gap-8 hard-shadow">
+            <div className="md:w-1/2">
+              <h2 className="text-4xl md:text-6xl font-display font-black uppercase mb-4 leading-tight">
+                Don't Miss <br /> The Next Drop
+              </h2>
+              <p className="opacity-70 text-lg">
+                Sign up to our encrypted transmission for launch alerts and
+                restock notifications.
+              </p>
+            </div>
+            <div className="md:w-1/3 w-full">
+              <div className="flex flex-col gap-4">
+                <input
+                  type="email"
+                  placeholder="AGENT@EMAIL.COM"
+                  className="bg-transparent border-b-2 border-surface/30 p-4 font-display font-bold text-xl focus:border-surface transition-colors outline-none uppercase"
+                />
+                <button className="bg-primary text-on-primary py-4 rounded-full font-display font-black uppercase text-xl hover:bg-primary/90 transition-all">
+                  Join The Inner Circle
+                </button>
+              </div>
             </div>
           </div>
-          {/* Decorative Element */}
-          <div className="absolute -right-20 -bottom-20 w-80 h-80 border-[20px] border-surface/5 rounded-full"></div>
-          <div className="absolute -left-20 -top-20 w-80 h-80 border-[20px] border-primary-container/10 rounded-full"></div>
         </section>
       </main>
       <Footer />
