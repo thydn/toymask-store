@@ -2,45 +2,59 @@ import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="bg-[#fbfaee] dark:bg-[#1b1c15] sticky top-0 z-50 backdrop-blur-md bg-opacity-80 border-b-2 border-[#1b1c15] dark:border-[#fbfaee] flex justify-between items-center px-6 py-4 w-full max-w-full">
+    <header className="fixed top-0 w-full z-50 border-b-2 border-on-background bg-surface/90 backdrop-blur-md h-20 flex justify-between items-center px-6 py-4">
       <div className="flex items-center gap-4">
-        <span className="material-symbols-outlined text-[#1b1c15] dark:text-[#fbfaee] cursor-pointer">
+        <button className="material-symbols-outlined text-on-surface p-2 hover:bg-primary-container transition-colors rounded-lg">
           menu
-        </span>
+        </button>
         <Link
           href="/"
-          className="font-display font-extrabold uppercase tracking-tight text-2xl text-[#1b1c15] dark:text-[#fbfaee]"
+          className="text-3xl font-black text-on-surface tracking-tighter font-display uppercase"
         >
-          TOYMASK
+          ToyMask
         </Link>
       </div>
-      <div className="flex items-center gap-8">
-        <nav className="hidden md:flex gap-8 items-center">
-          <Link
-            href="/"
-            className="font-display font-bold uppercase tracking-tighter text-sm hover:text-primary transition-colors"
-          >
-            Home
-          </Link>
-          <Link
-            href="/products"
-            className="font-display font-bold uppercase tracking-tighter text-sm hover:text-primary transition-colors"
-          >
-            Shop
-          </Link>
-          <Link
-            href="/about"
-            className="font-display font-bold uppercase tracking-tighter text-sm hover:text-primary transition-colors"
-          >
-            About
-          </Link>
-        </nav>
+      <nav className="hidden md:flex items-center gap-8 font-display font-bold tracking-tight uppercase">
         <Link
-          href="/cart"
-          className="material-symbols-outlined text-[#1b1c15] dark:text-[#fbfaee] cursor-pointer hover:bg-secondary-container p-2 rounded-full transition-colors"
+          className="text-on-surface border-b-2 border-primary-container px-1 py-1 transition-colors"
+          href="/"
         >
-          shopping_bag
+          Home
         </Link>
+        <Link
+          className="text-on-surface/60 hover:text-on-surface transition-colors px-1 py-1"
+          href="/products"
+        >
+          Collections
+        </Link>
+        <Link
+          className="text-on-surface/60 hover:text-on-surface transition-colors px-1 py-1"
+          href="#"
+        >
+          Limited Edition
+        </Link>
+        <Link
+          className="bg-primary-container text-on-surface border-2 border-on-background px-4 py-1.5 rounded-full hard-shadow-hover transition-all text-xs"
+          href="/cart"
+        >
+          The Vault
+        </Link>
+      </nav>
+      <div className="flex items-center gap-2">
+        <button className="material-symbols-outlined p-2 hover:bg-primary-container transition-colors rounded-full">
+          search
+        </button>
+        <div className="relative">
+          <Link
+            href="/cart"
+            className="material-symbols-outlined p-2 hover:bg-primary-container transition-colors rounded-full"
+          >
+            shopping_cart
+          </Link>
+          <span className="absolute top-1 right-1 bg-secondary text-white text-[10px] font-bold w-4 h-4 flex items-center justify-center rounded-full border-1 border-on-background">
+            2
+          </span>
+        </div>
       </div>
     </header>
   );

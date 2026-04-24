@@ -9,9 +9,11 @@
   --color-secondary-container: #aef2c2;
   --color-surface: #fbfaee;
   --color-on-surface: #1b1c15;
-  --color-surface-container-lowest: #ffffff;
+  --color-on-surface-variant: #4d4732;
   --color-surface-container-low: #f5f4e8;
-  --color-surface-container: #efeee3;
+  --color-surface-container-high: #e9e9dd;
+  --color-surface-container-highest: #e4e3d7;
+  --color-surface-container-lowest: #ffffff;
   --color-outline: #7e775f;
   --color-error: #ba1a1a;
   
@@ -23,8 +25,11 @@
   box-shadow: 4px 4px 0px 0px #1b1c15;
 }
 
-@utility hard-shadow-sm {
-  box-shadow: 2px 2px 0px 0px #1b1c15;
+@utility hard-shadow-hover {
+  &:hover {
+    box-shadow: 4px 4px 0px 0px #1b1c15;
+    transform: translate(-2px, -2px);
+  }
 }
 
 @utility active-hard-shadow {
@@ -38,19 +43,12 @@
   @apply border-2 border-on-background;
 }
 
-@utility no-scrollbar {
-  &::-webkit-scrollbar {
-    display: none;
+@utility text-stroke {
+  -webkit-text-stroke: 2px #1b1c15;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-on-surface antialiased font-body;
   }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-:root {
-  --background: #fbfaee;
-  --on-background: #1b1c15;
-}
-
-body {
-  @apply bg-background text-on-background antialiased;
 }
