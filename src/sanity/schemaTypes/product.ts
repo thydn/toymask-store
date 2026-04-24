@@ -32,7 +32,6 @@ export const product = defineType({
       title: "SKU / Mã Sản Phẩm",
       type: "string",
       description: "Dùng để trích xuất Excel & Thống kê. Nếu bỏ trống, hệ thống sẽ tự lấy ID làm mã.",
-      validation: (Rule) => Rule.optional(),
     }),
     defineField({
       name: "stock",
