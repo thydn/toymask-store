@@ -43,12 +43,13 @@ export default function Catalog() {
     if (category === "All Artifacts") {
       setFilteredProducts(allProducts);
     } else {
-      setFilteredProducts(allProducts.filter(p => {
+      const filtered = allProducts.filter(p => {
         if (!p.category) return false;
-        const pCat = p.category.toLowerCase();
+        const prodCat = p.category.toLowerCase();
         const targetCat = category.toLowerCase();
-        return pCat.includes(targetCat) || targetCat.includes(pCat);
-      }));
+        return prodCat.includes(targetCat) || targetCat.includes(prodCat);
+      });
+      setFilteredProducts(filtered);
     }
   };
 
