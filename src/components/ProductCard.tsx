@@ -21,6 +21,7 @@ export default function ProductCard({
   rating,
   isLimited,
   isHot,
+  slug,
 }: ProductCardProps) {
   return (
     <div className="bg-surface-container-lowest border-2 border-on-surface rounded-xl overflow-hidden group active:translate-y-0.5 transition-transform">
