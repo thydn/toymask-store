@@ -94,8 +94,8 @@ export const product = defineType({
       ],
     }),
     defineField({
-      name: "sku",
-      title: "SKU (Optional)",
+      name: "itemCode",
+      title: "Mã Sản Phẩm (Tùy chọn)",
       type: "string",
     }),
   ],

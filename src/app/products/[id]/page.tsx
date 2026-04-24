@@ -25,7 +25,7 @@ async function getProduct(slug: string) {
     name,
     "slug": slug.current,
     price,
-    sku,
+    itemCode,
     stock,
     rating,
     image,
@@ -45,7 +45,7 @@ export default async function ProductDetail({ params }: PageProps) {
   }
 
   const isOutOfStock = (product.stock || 0) <= 0;
-  const productSku = product.sku || product._id.slice(-6).toUpperCase();
+  const productSku = product.itemCode || product._id.slice(-6).toUpperCase();
   
   const productForCart = {
     id: product._id,

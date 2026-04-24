@@ -29,8 +29,8 @@ export default function ProductCard({
   stock,
   isLimited,
   isHot,
-  sku,
-}: ProductCardProps & { sku?: string }) {
+  itemCode,
+}: ProductCardProps & { itemCode?: string }) {
   const { addToCart } = useCart();
   const isOutOfStock = stock <= 0;
 
@@ -45,7 +45,7 @@ export default function ProductCard({
       image,
       slug,
       stock,
-      sku: sku || id.slice(-6).toUpperCase(),
+      sku: itemCode || id.slice(-6).toUpperCase(),
       quantity: 1
     });
   };
