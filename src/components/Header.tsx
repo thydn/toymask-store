@@ -8,7 +8,7 @@ export default function Header() {
           menu
         </span>
         <Link
-          href="/"
+          href="/index"
           className="font-display font-extrabold uppercase tracking-tight text-2xl text-[#1b1c15] dark:text-[#fbfaee]"
         >
           TOYMASK
