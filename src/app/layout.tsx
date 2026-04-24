@@ -24,6 +24,8 @@ export const metadata: Metadata = {
   description: "The digital archive for premium play components. Engineered for imagination.",
 };
 
+import { CartProvider } from "@/context/CartContext";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -40,7 +42,9 @@ export default function RootLayout({
       <body
         className={`${plusJakartaSans.variable} ${manrope.variable} ${geistMono.variable} font-body antialiased`}
       >
-        {children}
+        <CartProvider>
+          {children}
+        </CartProvider>
       </body>
     </html>
   );

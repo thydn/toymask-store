@@ -1,6 +1,9 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { urlForImage } from "@/sanity/lib/image";
+import { useCart } from "@/context/CartContext";
 
 interface ProductCardProps {
   id: string;
@@ -25,6 +28,21 @@ export default function ProductCard({
   isLimited,
   isHot,
 }: ProductCardProps) {
+  const { addToCart } = useCart();
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    addToCart({
+      id,
+      name,
+      price,
+      image,
+      slug,
+      quantity: 1
+    });
+  };
+
   return (
     <div className="bg-surface-container-lowest border-2 border-on-surface rounded-xl overflow-hidden group active:translate-y-0.5 transition-transform h-full flex flex-col">
       <div className="aspect-square relative overflow-hidden bg-surface-container-low border-b-2 border-on-surface p-2">
@@ -55,7 +73,10 @@ export default function ProductCard({
         
         <div className="flex items-center justify-between gap-2 mt-auto">
           <span className="font-display font-black text-lg">${price}</span>
-          <button className="bg-primary-container border-2 border-on-surface w-8 h-8 rounded-full flex items-center justify-center active:scale-90 transition-transform">
+          <button 
+            onClick={handleAddToCart}
+            className="bg-primary-container border-2 border-on-surface w-8 h-8 rounded-full flex items-center justify-center active:scale-90 transition-transform"
+          >
             <span className="material-symbols-outlined text-sm">add</span>
           </button>
         </div>
